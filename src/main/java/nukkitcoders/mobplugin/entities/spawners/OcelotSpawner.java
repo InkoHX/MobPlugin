@@ -18,9 +18,6 @@ import nukkitcoders.mobplugin.utils.Utils;
  */
 public class OcelotSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public OcelotSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }
@@ -39,8 +36,8 @@ public class OcelotSpawner extends AbstractEntitySpawner {
             result = SpawnResult.WRONG_BLOCK;
         } else if (blockId != Block.GRASS && blockId != Block.LEAVES) {
             result = SpawnResult.WRONG_BLOCK;
-        //} else if (blockLightLevel < 9) {
-        //  result = SpawnResult.WRONG_LIGHTLEVEL;
+            //} else if (blockLightLevel < 9) {
+            //  result = SpawnResult.WRONG_LIGHTLEVEL;
         } else if (pos.y > 127 || pos.y < 1 || level.getBlockIdAt((int) pos.x, (int) pos.y, (int) pos.z) == Block.AIR) {
             result = SpawnResult.POSITION_MISMATCH;
         } else {

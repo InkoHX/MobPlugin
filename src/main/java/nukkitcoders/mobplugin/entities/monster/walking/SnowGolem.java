@@ -27,7 +27,7 @@ public class SnowGolem extends WalkingMonster {
 
     public SnowGolem(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-        this.setFriendly(true);
+        this.setFriendly();
     }
 
     @Override
@@ -107,7 +107,7 @@ public class SnowGolem extends WalkingMonster {
                 drops.add(Item.get(Item.SNOWBALL, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

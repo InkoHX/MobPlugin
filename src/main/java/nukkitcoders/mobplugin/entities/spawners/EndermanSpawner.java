@@ -18,9 +18,6 @@ import nukkitcoders.mobplugin.utils.Utils;
  */
 public class EndermanSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public EndermanSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }

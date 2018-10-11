@@ -17,19 +17,19 @@ public class Utils {
      *
      * @param min min inklusive value
      * @param max max exclusive value
-     * @return
      */
     public static int rand(int min, int max) {
         if (min == max) {
             return max;
         }
-        return ThreadLocalRandom.current().nextInt(min,max);
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
+
     public static double rand(double min, double max) {
         if (min == max) {
             return max;
         }
-        return ThreadLocalRandom.current().nextDouble(min,max);
+        return ThreadLocalRandom.current().nextDouble(min, max);
     }
 
     public static float rand(float min, float max) {
@@ -41,7 +41,8 @@ public class Utils {
 
     /**
      * Returns random boolean
-     * @return  a boolean random value either <code>true</code> or <code>false</code>
+     *
+     * @return a boolean random value either <code>true</code> or <code>false</code>
      */
     public static boolean rand() {
         return random.nextBoolean();
@@ -60,9 +61,9 @@ public class Utils {
             else return Double.MAX_VALUE;
         } else {
             if (type == ACCORDING_X_OBTAIN_Y) {
-                return (element-pos1.getX()) * (pos1.getZ()-pos2.getZ()) / (pos1.getX()-pos2.getX()) + pos1.getZ();
+                return (element - pos1.getX()) * (pos1.getZ() - pos2.getZ()) / (pos1.getX() - pos2.getX()) + pos1.getZ();
             } else {
-                return (element-pos1.getZ()) * (pos1.getX()-pos2.getX()) / (pos1.getZ()-pos2.getZ()) + pos1.getX();
+                return (element - pos1.getZ()) * (pos1.getX() - pos2.getX()) / (pos1.getZ() - pos2.getZ()) + pos1.getX();
             }
         }
     }

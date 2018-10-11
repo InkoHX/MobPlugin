@@ -75,14 +75,14 @@ public class Mooshroom extends WalkingAnimal {
                 drops.add(Item.get(this.isOnFire() ? Item.STEAK : Item.RAW_BEEF, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
     public int getKillExperience() {
         return Utils.rand(1, 4);
     }
-    
+
     @Override
     public boolean onInteract(Player player, Item item) {
         super.onInteract(player, item);

@@ -106,7 +106,7 @@ public class Ghast extends FlyingMonster {
                 drops.add(Item.get(Item.GHAST_TEAR, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

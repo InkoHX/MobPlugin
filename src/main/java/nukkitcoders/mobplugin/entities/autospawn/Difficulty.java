@@ -2,7 +2,6 @@ package nukkitcoders.mobplugin.entities.autospawn;
 
 /**
  * @author <a href="mailto:kniffman@googlemail.com">Michael Gertz (mige)</a>
- *
  */
 public enum Difficulty {
 
@@ -10,15 +9,15 @@ public enum Difficulty {
 
     private int difficulty;
 
-    private Difficulty (int difficulty) {
+    Difficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
-    public int getDifficulty () {
+    public int getDifficulty() {
         return difficulty;
     }
 
-    public static Difficulty getByDiffculty (int difficulty) {
+    public static Difficulty getByDiffculty(int difficulty) {
         switch (difficulty) {
             case 0:
                 return PEACEFUL;

@@ -12,27 +12,27 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @author zzz1999 @ MobPlugin
  */
 public abstract class RouteFinder {
-    protected ArrayList<Node> nodes = new ArrayList<>();
-    protected boolean finished = false;
-    protected boolean searching = false;
+    private ArrayList<Node> nodes = new ArrayList<>();
+    boolean finished = false;
+    boolean searching = false;
 
-    protected int current = 0;
+    private int current = 0;
 
     public WalkingEntity entity;
 
-    protected Vector3 start;
-    protected Vector3 destination;
+    Vector3 start;
+    Vector3 destination;
 
     protected Level level;
 
-    protected boolean interrupt = false;
+    private boolean interrupt = false;
 
     private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    protected boolean reachable = true;
+    boolean reachable = true;
 
     RouteFinder(WalkingEntity entity) {
-        Objects.requireNonNull(entity,"RouteFinder: entity can not be null");
+        Objects.requireNonNull(entity, "RouteFinder: entity can not be null");
         this.entity = entity;
         this.level = entity.getLevel();
     }
@@ -71,20 +71,20 @@ public abstract class RouteFinder {
         return searching;
     }
 
-    public void addNode(Node node) {
+    void addNode(Node node) {
         try {
             lock.writeLock().lock();
             nodes.add(node);
-        }finally {
+        } finally {
             lock.writeLock().unlock();
         }
     }
 
-    public void addNode(ArrayList<Node> node) {
-        try{
+    void addNode(ArrayList<Node> node) {
+        try {
             lock.writeLock().lock();
             nodes.addAll(node);
-        }finally {
+        } finally {
             lock.writeLock().unlock();
         }
 
@@ -94,18 +94,19 @@ public abstract class RouteFinder {
         return reachable;
     }
 
-    public Node getCurrentNode() {
-        try{
+    private Node getCurrentNode() {
+        try {
             lock.readLock().lock();
             if (this.hasCurrentNode()) {
                 return nodes.get(current);
             }
             return null;
-        }finally {
+        } finally {
             lock.readLock().unlock();
         }
 
     }
+
     public boolean hasCurrentNode() {
         return current < this.nodes.size();
     }
@@ -124,31 +125,31 @@ public abstract class RouteFinder {
     }
 
     public boolean hasArrivedNode(Vector3 vec) {
-        try{
+        try {
             lock.readLock().lock();
-            if (this.hasNext() &&  this.getCurrentNode().getVector3()!=null) {
+            if (this.hasNext() && Objects.requireNonNull(this.getCurrentNode()).getVector3() != null) {
                 Vector3 cur = this.getCurrentNode().getVector3();
                 return vec.getX() == cur.getX() && vec.getZ() == cur.getZ();
             }
             return false;
-        }finally {
+        } finally {
             lock.readLock().unlock();
         }
     }
 
-    public void resetNodes() {
-        try{
+    void resetNodes() {
+        try {
             this.lock.writeLock().lock();
             this.nodes.clear();
             this.current = 0;
             this.interrupt = false;
             this.destination = null;
-        }finally {
+        } finally {
             this.lock.writeLock().unlock();
         }
     }
 
-    public abstract boolean search();
+    public abstract void search();
 
     public void research() {
         this.resetNodes();
@@ -156,23 +157,23 @@ public abstract class RouteFinder {
     }
 
     public boolean hasNext() {
-        return this.current + 1 < nodes.size() && this.nodes.get(this.current+1)!= null;
+        return this.current + 1 < nodes.size() && this.nodes.get(this.current + 1) != null;
     }
 
     public Vector3 next() {
-        try{
+        try {
             lock.readLock().lock();
             if (this.hasNext()) {
                 return this.nodes.get(++current).getVector3();
             }
             return null;
-        }finally {
+        } finally {
             lock.readLock().unlock();
         }
 
     }
 
-    public boolean isInterrupted() {
+    boolean isInterrupted() {
         return this.interrupt;
     }
 

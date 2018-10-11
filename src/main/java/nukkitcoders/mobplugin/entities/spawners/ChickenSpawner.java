@@ -17,9 +17,6 @@ import nukkitcoders.mobplugin.entities.autospawn.SpawnResult;
  */
 public class ChickenSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public ChickenSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }
@@ -32,8 +29,8 @@ public class ChickenSpawner extends AbstractEntitySpawner {
 
         if (blockId != Block.GRASS) {
             result = SpawnResult.WRONG_BLOCK;
-        //} else if (blockLightLevel < 9) {
-        //    result = SpawnResult.WRONG_LIGHTLEVEL;
+            //} else if (blockLightLevel < 9) {
+            //    result = SpawnResult.WRONG_LIGHTLEVEL;
         } else if (biomeId == 8) {
             result = SpawnResult.WRONG_BLOCK;
         } else if (pos.y > 127 || pos.y < 1 || level.getBlockIdAt((int) pos.x, (int) pos.y, (int) pos.z) == Block.AIR) {

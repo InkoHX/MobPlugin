@@ -24,7 +24,7 @@ public class Horse extends WalkingAnimal {
     private int Type = 0;
     private int Variant = this.getRandomVariant();
 
-    public Horse(FullChunk chunk, CompoundTag nbt) {
+    Horse(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
     }
 
@@ -114,7 +114,7 @@ public class Horse extends WalkingAnimal {
                 drops.add(Item.get(Item.LEATHER, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
@@ -125,12 +125,12 @@ public class Horse extends WalkingAnimal {
 
     private int getRandomVariant() {
         int VariantList[] = {
-                0,1,2,3,4,5,6,
-                256,257,258,259,260,261,262,
-                512,513,514,515,516,517,518,
-                768,769,770,771,772,773,774,
-                1024,1025,1026,1027,1028,1029,1030
+                0, 1, 2, 3, 4, 5, 6,
+                256, 257, 258, 259, 260, 261, 262,
+                512, 513, 514, 515, 516, 517, 518,
+                768, 769, 770, 771, 772, 773, 774,
+                1024, 1025, 1026, 1027, 1028, 1029, 1030
         };
-        return VariantList[Utils.rand(0,VariantList.length)];
+        return VariantList[Utils.rand(0, VariantList.length)];
     }
 }

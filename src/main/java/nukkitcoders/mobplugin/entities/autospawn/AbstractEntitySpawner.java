@@ -20,9 +20,9 @@ public abstract class AbstractEntitySpawner implements IEntitySpawner {
 
     protected AutoSpawnTask spawnTask;
 
-    protected Server        server;
+    protected Server server;
 
-    protected List<String>  disabledSpawnWorlds = new ArrayList<>();
+    private List<String> disabledSpawnWorlds = new ArrayList<>();
 
     public AbstractEntitySpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         this.spawnTask = spawnTask;
@@ -43,9 +43,9 @@ public abstract class AbstractEntitySpawner implements IEntitySpawner {
     @Override
     public void spawn(List<Player> onlinePlayers) {
         if (isSpawnAllowedByDifficulty()) {
-            SpawnResult lastSpawnResult = null;
+            SpawnResult lastSpawnResult;
             for (Player player : onlinePlayers) {
-                if (isWorldSpawnAllowed (player.getLevel())) {
+                if (isWorldSpawnAllowed(player.getLevel())) {
                     lastSpawnResult = spawn(player);
                     if (lastSpawnResult.equals(SpawnResult.MAX_SPAWN_REACHED)) {
                         break;
@@ -57,10 +57,11 @@ public abstract class AbstractEntitySpawner implements IEntitySpawner {
 
     /**
      * Checks if the given level's name is on blacklist for auto spawn
+     *
      * @param level the level to be checked
      * @return <code>true</code> when world spawn is allowed
      */
-    private boolean isWorldSpawnAllowed (Level level) {
+    private boolean isWorldSpawnAllowed(Level level) {
         for (String worldName : this.disabledSpawnWorlds) {
             if (level.getName().toLowerCase().equals(worldName.toLowerCase())) {
                 return false;
@@ -90,12 +91,7 @@ public abstract class AbstractEntitySpawner implements IEntitySpawner {
         return spawn(iPlayer, pos, level);
     }
 
-    /**
-     * A simple method that evaluates based on the difficulty set in server if a spawn is allowed or not
-     *
-     * @return
-     */
-    protected boolean isSpawnAllowedByDifficulty() {
+    private boolean isSpawnAllowedByDifficulty() {
 
         int randomNumber = Utils.rand(0, 4);
 
@@ -118,7 +114,7 @@ public abstract class AbstractEntitySpawner implements IEntitySpawner {
      *
      * @return a {@link Difficulty} instance
      */
-    protected Difficulty getCurrentDifficulty() {
+    private Difficulty getCurrentDifficulty() {
         return Difficulty.getByDiffculty(this.server.getDifficulty());
     }
 }

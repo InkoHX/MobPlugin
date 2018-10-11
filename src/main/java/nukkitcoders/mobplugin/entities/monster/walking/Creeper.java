@@ -32,8 +32,6 @@ public class Creeper extends WalkingMonster implements EntityExplosive {
 
     private int bombTime = 0;
 
-    private boolean exploded = false;
-
     public Creeper(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
         this.route = new WalkerRouteFinder(this);
@@ -82,7 +80,6 @@ public class Creeper extends WalkingMonster implements EntityExplosive {
             }
             explosion.explodeB();
             this.level.addParticle(new HugeExplodeSeedParticle(this));
-            this.exploded = true;
         }
         this.close();
     }
@@ -109,7 +106,7 @@ public class Creeper extends WalkingMonster implements EntityExplosive {
         if (!this.isMovement()) {
             return true;
         }
-        if (this.age % 10 == 0 && this.route!=null && !this.route.isSearching()) {
+        if (this.age % 10 == 0 && this.route != null && !this.route.isSearching()) {
             RouteFinderThreadPool.executeRouteFinderThread(new RouteFinderSearchTask(this.route));
             if (this.route.hasNext()) {
                 this.target = this.route.next();
@@ -125,7 +122,7 @@ public class Creeper extends WalkingMonster implements EntityExplosive {
 
         this.checkTarget();
 
-        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target!=null) {
+        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target != null) {
             double x = this.target.x - this.x;
             double y = this.target.y - this.y;
             double z = this.target.z - this.z;
@@ -212,7 +209,7 @@ public class Creeper extends WalkingMonster implements EntityExplosive {
                 drops.add(Item.get(Item.GUNPOWDER, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class EnderDragon extends FlyingMonster {
 
     @Override
     public int getKillExperience() {
-        for (int i = 0; i < 167;) {
+        for (int i = 0; i < 167; ) {
             this.level.dropExpOrb(this, 3);
             i++;
         }

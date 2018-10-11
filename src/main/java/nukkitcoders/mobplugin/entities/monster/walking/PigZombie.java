@@ -22,7 +22,7 @@ public class PigZombie extends WalkingMonster {
 
     public static final int NETWORK_ID = 36;
 
-    int                     angry      = 0;
+    int angry = 0;
 
     public PigZombie(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -63,7 +63,7 @@ public class PigZombie extends WalkingMonster {
         }
 
         this.fireProof = true;
-        this.setDamage(new float[] { 0, 5, 9, 13 });
+        this.setDamage(new float[]{0, 5, 9, 13});
         setMaxHealth(20);
     }
 
@@ -76,7 +76,7 @@ public class PigZombie extends WalkingMonster {
     @Override
     public boolean targetOption(EntityCreature creature, double distance) {
         if (distance <= 100 && this.isAngry() && creature instanceof PigZombie && !((PigZombie) creature).isAngry()) {
-            ((PigZombie) creature).setAngry(1000);
+            ((PigZombie) creature).setAngry();
         }
         return this.isAngry() && super.targetOption(creature, distance);
     }
@@ -128,12 +128,12 @@ public class PigZombie extends WalkingMonster {
         }
     }
 
-    public boolean isAngry() {
+    private boolean isAngry() {
         return this.angry > 0;
     }
 
-    public void setAngry(int val) {
-        this.angry = val;
+    private void setAngry() {
+        this.angry = 1000;
     }
 
     @Override
@@ -141,7 +141,7 @@ public class PigZombie extends WalkingMonster {
         super.attack(ev);
 
         if (!ev.isCancelled()) {
-            this.setAngry(1000);
+            this.setAngry();
         }
         return true;
     }
@@ -164,21 +164,21 @@ public class PigZombie extends WalkingMonster {
             int rottenFlesh = Utils.rand(0, 2);
             int goldNuggets = Utils.rand(0, 101) <= 3 ? 1 : 0;
             int goldSword = Utils.rand(0, 101) <= 9 ? 1 : 0;
-            for (int i=0; i < rottenFlesh; i++) {
+            for (int i = 0; i < rottenFlesh; i++) {
                 drops.add(Item.get(Item.ROTTEN_FLESH, 0, 1));
             }
-            for (int i=0; i < goldNuggets; i++) {
+            for (int i = 0; i < goldNuggets; i++) {
                 drops.add(Item.get(Item.GOLD_NUGGET, 0, 1));
             }
-            for (int i=0; i < goldSword; i++) {
+            for (int i = 0; i < goldSword; i++) {
                 drops.add(Item.get(Item.GOLD_SWORD, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 5;
     }
 

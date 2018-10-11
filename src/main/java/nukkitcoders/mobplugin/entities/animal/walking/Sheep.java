@@ -23,8 +23,8 @@ public class Sheep extends WalkingAnimal {
 
     public static final int NETWORK_ID = 13;
 
-    public boolean sheared = false;
-    public int color = 0;
+    private boolean sheared = false;
+    private int color = 0;
 
     public Sheep(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -111,10 +111,10 @@ public class Sheep extends WalkingAnimal {
 
     }
 
-    public void shear() {
+    private void shear() {
         this.sheared = true;
         this.setDataFlag(DATA_FLAGS, DATA_FLAG_SHEARED, true);
-        this.level.dropItem(this, Item.get(Item.WOOL, getColor(), Utils.rand(0,4)));
+        this.level.dropItem(this, Item.get(Item.WOOL, getColor(), Utils.rand(0, 4)));
     }
 
     @Override
@@ -136,17 +136,17 @@ public class Sheep extends WalkingAnimal {
                 drops.add(Item.get(this.isOnFire() ? Item.COOKED_MUTTON : Item.RAW_MUTTON, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
 
-    public void setColor(int color) {
+    private void setColor(int color) {
         this.color = color;
-        this.namedTag.putByte("Color",color);
+        this.namedTag.putByte("Color", color);
         this.setDataProperty(new ByteEntityData(DATA_COLOUR, color));
     }
 
-    public int getColor() {
+    private int getColor() {
         return namedTag.getByte("Color");
     }
 
@@ -154,11 +154,11 @@ public class Sheep extends WalkingAnimal {
         ThreadLocalRandom random = ThreadLocalRandom.current();
         int rand = random.nextInt(0, 2500);
 
-        if (rand < 125 && 0 <= rand)return DyeColor.BLACK.getDyeData();
-        else if (rand < 250 && 125 <= rand)return DyeColor.GRAY.getDyeData();
-        else if (rand < 375 && 250 <= rand)return DyeColor.LIGHT_GRAY.getDyeData();
-        else if (rand < 500 && 375 <= rand)return DyeColor.GRAY.getDyeData();
-        else if (rand < 541 && 500 <= rand)return DyeColor.PINK.getDyeData();
+        if (rand < 125 && 0 <= rand) return DyeColor.BLACK.getDyeData();
+        else if (rand < 250 && 125 <= rand) return DyeColor.GRAY.getDyeData();
+        else if (rand < 375 && 250 <= rand) return DyeColor.LIGHT_GRAY.getDyeData();
+        else if (rand < 500 && 375 <= rand) return DyeColor.GRAY.getDyeData();
+        else if (rand < 541 && 500 <= rand) return DyeColor.PINK.getDyeData();
         else return DyeColor.WHITE.getDyeData();
     }
 

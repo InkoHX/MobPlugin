@@ -17,9 +17,6 @@ import nukkitcoders.mobplugin.entities.monster.walking.Zombie;
  */
 public class ZombieSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public ZombieSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }

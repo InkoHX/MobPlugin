@@ -69,7 +69,7 @@ public class Llama extends WalkingAnimal {
                 drops.add(Item.get(Item.LEATHER, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

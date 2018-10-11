@@ -17,18 +17,16 @@ public class RouteFinderSearchTask implements Runnable {
     @Override
     public void run() {
         if (this.route == null) return;
-        while (retryTime < 50) {
-            if (!this.route.isSearching()) {
-                this.route.research();
-                return;
-            } else {
-                retryTime += 10;
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException ignore) {
+        while (retryTime < 50) if (this.route.isSearching()) {
+            retryTime += 10;
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ignore) {
 
-                }
             }
+        } else {
+            this.route.research();
+            return;
         }
         route.interrupt();
     }

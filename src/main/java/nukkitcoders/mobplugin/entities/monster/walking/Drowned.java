@@ -50,7 +50,7 @@ public class Drowned extends WalkingMonster {
     protected void initEntity() {
         super.initEntity();
 
-        this.setDamage(new float[] { 0, 2, 3, 4 });
+        this.setDamage(new float[]{0, 2, 3, 4});
         this.setMaxHealth(20);
     }
 
@@ -64,13 +64,13 @@ public class Drowned extends WalkingMonster {
 
         if (this.isAlive()) {
             if (15 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 2, 3, 4 });
+                this.setDamage(new float[]{0, 2, 3, 4});
             } else if (10 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 4, 6 });
+                this.setDamage(new float[]{0, 3, 4, 6});
             } else if (5 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 5, 7 });
+                this.setDamage(new float[]{0, 3, 5, 7});
             } else {
-                this.setDamage(new float[] { 0, 4, 6, 9 });
+                this.setDamage(new float[]{0, 4, 6, 9});
             }
         }
     }
@@ -80,7 +80,7 @@ public class Drowned extends WalkingMonster {
         if (this.attackDelay > 10 && player.distanceSquared(this) <= 1) {
             this.attackDelay = 0;
             HashMap<EntityDamageEvent.DamageModifier, Float> damage = new HashMap<>();
-            damage.put(EntityDamageEvent.DamageModifier.BASE, (float) this.getDamage());
+            damage.put(EntityDamageEvent.DamageModifier.BASE, this.getDamage());
 
             if (player instanceof Player) {
                 @SuppressWarnings("serial")
@@ -125,7 +125,7 @@ public class Drowned extends WalkingMonster {
             Server.broadcastPacket(this.getViewers().values(), pk);
         }
     }
-    
+
     @Override
     public boolean entityBaseTick(int tickDiff) {
         boolean hasUpdate;
@@ -155,7 +155,7 @@ public class Drowned extends WalkingMonster {
                 drops.add(Item.get(Item.GOLD_INGOT, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

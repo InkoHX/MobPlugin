@@ -47,7 +47,7 @@ public class Enderman extends WalkingMonster {
         this.setMaxHealth(40);
         super.initEntity();
 
-        this.setDamage(new float[] { 0, 4, 7, 10 });
+        this.setDamage(new float[]{0, 4, 7, 10});
     }
 
     public void attackEntity(Entity player) {
@@ -122,11 +122,11 @@ public class Enderman extends WalkingMonster {
                 drops.add(Item.get(Item.ENDER_PEARL, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 5;
     }
 }

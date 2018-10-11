@@ -14,6 +14,7 @@ import cn.nukkit.nbt.tag.CompoundTag;
 import co.aikar.timings.Timings;
 import nukkitcoders.mobplugin.MobPlugin;
 import nukkitcoders.mobplugin.entities.monster.Monster;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +23,6 @@ public abstract class BaseEntity extends EntityCreature {
     protected int stayTime = 0;
 
     protected int moveTime = 0;
-
-    public double moveMultifier = 1.0d;
 
     protected Vector3 target = null;
 
@@ -46,20 +45,19 @@ public abstract class BaseEntity extends EntityCreature {
     protected List<Block> blocksAround = new ArrayList<>();
 
     protected List<Block> collisionBlocks = new ArrayList<>();
-    
-    private boolean despawnEntities;
-    
-    private int despawnTicks;
-    
-    public boolean canDespawn = true;
 
-    private int maxJumpHeight = 1;
+    private boolean despawnEntities;
+
+    private int despawnTicks;
+
+    private boolean canDespawn = true;
+
     protected boolean isJumping;
     public float jumpMovementFactor = 0.02F;
 
-    public BaseEntity(FullChunk chunk, CompoundTag nbt) {
+    BaseEntity(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-        
+
         this.despawnEntities = MobPlugin.getInstance().getConfig().getBoolean("entities.despawn-entities", true);
         this.despawnTicks = MobPlugin.getInstance().getConfig().getInt("entities.despawn-ticks", 12000);
     }
@@ -72,27 +70,27 @@ public abstract class BaseEntity extends EntityCreature {
         return this.friendly;
     }
 
-    public boolean isMovement() {
+    protected boolean isMovement() {
         return this.movement;
     }
 
-    public boolean isKnockback() {
+    protected boolean isKnockback() {
         return this.attackTime > 0;
     }
 
-    public boolean isWallCheck() {
+    private boolean isWallCheck() {
         return this.wallcheck;
     }
 
-    public void setFriendly(boolean bool) {
-        this.friendly = bool;
+    protected void setFriendly() {
+        this.friendly = true;
     }
 
-    public void setMovement(boolean value) {
+    private void setMovement(boolean value) {
         this.movement = value;
     }
 
-    public void setWallCheck(boolean value) {
+    private void setWallCheck(boolean value) {
         this.wallcheck = value;
     }
 
@@ -101,7 +99,7 @@ public abstract class BaseEntity extends EntityCreature {
     }
 
     public int getMaxJumpHeight() {
-        return this.maxJumpHeight;
+        return 1;
     }
 
     public int getAge() {
@@ -210,6 +208,7 @@ public abstract class BaseEntity extends EntityCreature {
     public boolean move(double dx, double dy, double dz) {
         Timings.entityMoveTimer.startTiming();
 
+        double moveMultifier = 1.0d;
         double movX = dx * moveMultifier;
         double movY = dy;
         double movZ = dz * moveMultifier;

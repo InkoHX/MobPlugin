@@ -27,23 +27,23 @@ public class Node implements Comparable<Node> {
     }
 
 
-    public Node getParent() {
+    Node getParent() {
         return parent;
     }
 
-    public void setParent(Node parent) {
+    void setParent(Node parent) {
         this.parent = parent;
     }
 
-    public int getG() {
+    int getG() {
         return G;
     }
 
-    public void setG(int g) {
+    void setG(int g) {
         G = g;
     }
 
-    public int getH() {
+    int getH() {
         return H;
     }
 
@@ -51,11 +51,11 @@ public class Node implements Comparable<Node> {
         H = h;
     }
 
-    public int getF() {
+    private int getF() {
         return F;
     }
 
-    public void setF(int f) {
+    void setF(int f) {
         F = f;
     }
 

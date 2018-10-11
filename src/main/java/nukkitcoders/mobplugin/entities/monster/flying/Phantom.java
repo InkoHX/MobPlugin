@@ -47,7 +47,7 @@ public class Phantom extends FlyingMonster {
         super.initEntity();
 
         this.setMaxHealth(20);
-        this.setDamage(new float[] { 0, 4, 6, 9 });
+        this.setDamage(new float[]{0, 4, 6, 9});
     }
 
     public boolean targetOption(EntityCreature creature, double distance) {
@@ -114,7 +114,7 @@ public class Phantom extends FlyingMonster {
                 drops.add(Item.get(470, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

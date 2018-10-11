@@ -45,7 +45,7 @@ public class Turtle extends SwimmingAnimal {
     public int getKillExperience() {
         return Utils.rand(1, 4);
     }
-    
+
     @Override
     public boolean isBaby() {
         return this.getDataFlag(DATA_FLAGS, Entity.DATA_FLAG_BABY);

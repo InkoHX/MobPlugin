@@ -53,7 +53,7 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
     }
 
     @Override
-    public boolean search() {
+    public void search() {
 
         this.finished = false;
         this.searching = true;
@@ -68,7 +68,7 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
             } else {
                 this.searching = false;
                 this.finished = true;
-                return false;
+                return;
             }
         }
 
@@ -83,7 +83,7 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
                 searchLimit = 0;
                 this.searching = false;
                 this.finished = true;
-                return false;
+                return;
             }
             putNeighborNodeIntoOpen(presentNode);
             if (openList.peek() != null && searchLimit-- > 0) {
@@ -94,7 +94,7 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
                 this.finished = true;
                 this.reachable = false;
                 this.addNode(new Node(destination));
-                return false;
+                return;
             }
 
         }
@@ -111,7 +111,6 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
         this.finished = true;
         this.searching = false;
 
-        return true;
     }
 
 
@@ -378,15 +377,19 @@ public class WalkerRouteFinder extends SimpleRouteFinder {
                 if (level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ())).canPassThrough() ||
                         level.getBlock(new Vector3(vector3.getX() - 1, vector3.getY() - 1, vector3.getZ())).canPassThrough() ||
                         level.getBlock(new Vector3(vector3.getX() - 1, vector3.getY() - 1, vector3.getZ() - 1)).canPassThrough() ||
-                        level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ() - 1)).canPassThrough()) return true;
+                        level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ() - 1)).canPassThrough())
+                    return true;
             } else if (xIsInt /*&& !zIsInt*/) {
                 if (level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ())).canPassThrough() ||
-                        level.getBlock(new Vector3(vector3.getX() - 1, vector3.getY() - 1, vector3.getZ())).canPassThrough()) return true;
+                        level.getBlock(new Vector3(vector3.getX() - 1, vector3.getY() - 1, vector3.getZ())).canPassThrough())
+                    return true;
             } else if (/*!xIsInt &&*/ zIsInt) {
                 if (level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ())).canPassThrough() ||
-                        level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ() - 1)).canPassThrough()) return true;
+                        level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ() - 1)).canPassThrough())
+                    return true;
             } else {
-                if (level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ())).canPassThrough()) return true;
+                if (level.getBlock(new Vector3(vector3.getX(), vector3.getY() - 1, vector3.getZ())).canPassThrough())
+                    return true;
             }
         }
         return false;

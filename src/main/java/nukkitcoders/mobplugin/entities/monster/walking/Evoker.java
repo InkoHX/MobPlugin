@@ -48,7 +48,7 @@ public class Evoker extends WalkingMonster {
     @Override
     protected void initEntity() {
         super.initEntity();
-        this.setDamage(new float[] { 0, 2, 3, 4 });
+        this.setDamage(new float[]{0, 2, 3, 4});
         setMaxHealth(24);
     }
 
@@ -58,13 +58,13 @@ public class Evoker extends WalkingMonster {
 
         if (this.isAlive()) {
             if (15 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 2, 3, 4 });
+                this.setDamage(new float[]{0, 2, 3, 4});
             } else if (10 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 4, 6 });
+                this.setDamage(new float[]{0, 3, 4, 6});
             } else if (5 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 5, 7 });
+                this.setDamage(new float[]{0, 3, 5, 7});
             } else {
-                this.setDamage(new float[] { 0, 4, 6, 9 });
+                this.setDamage(new float[]{0, 4, 6, 9});
             }
         }
     }
@@ -118,7 +118,7 @@ public class Evoker extends WalkingMonster {
 
     @Override
     public boolean entityBaseTick(int tickDiff) {
-        boolean hasUpdate = false;
+        boolean hasUpdate;
         Timings.entityBaseTickTimer.startTiming();
 
         hasUpdate = super.entityBaseTick(tickDiff);
@@ -132,16 +132,16 @@ public class Evoker extends WalkingMonster {
         List<Item> drops = new ArrayList<>();
         if (this.lastDamageCause instanceof EntityDamageByEntityEvent) {
             int emerald = Utils.rand(0, 2);
-            for (int i=0; i < emerald; i++) {
+            for (int i = 0; i < emerald; i++) {
                 drops.add(Item.get(Item.EMERALD, 0, 1));
             }
             drops.add(Item.get(Item.TOTEM, 0, 1));
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 10;
     }
 }

@@ -23,13 +23,13 @@ public abstract class SwimmingEntity extends BaseEntity {
         super(chunk, nbt);
     }
 
-    protected void checkTarget() {
+    private void checkTarget() {
         if (this.isKnockback()) {
             return;
         }
 
 
-        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && targetOption((EntityCreature) this.followTarget,this.distanceSquared(this.followTarget)) && this.target!=null) {
+        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && targetOption((EntityCreature) this.followTarget, this.distanceSquared(this.followTarget)) && this.target != null) {
             return;
         }
 
@@ -56,7 +56,7 @@ public abstract class SwimmingEntity extends BaseEntity {
             this.stayTime = 0;
             this.moveTime = 0;
             this.followTarget = creature;
-            if (this.route!=null)this.target = creature;
+            if (this.route != null) this.target = creature;
 
         }
 
@@ -86,7 +86,7 @@ public abstract class SwimmingEntity extends BaseEntity {
         }
     }
 
-    protected boolean checkJump(double dx, double dz) {
+    private boolean checkJump(double dx, double dz) {
         if (this.isInsideOfWater()) {
             this.motionY = Utils.rand(-0.15, 0.15);
         } else {
@@ -100,7 +100,7 @@ public abstract class SwimmingEntity extends BaseEntity {
             if (!this.isMovement()) {
                 return null;
             }
-            if (this.age % 10 == 0 && this.route!=null && !this.route.isSearching()) {
+            if (this.age % 10 == 0 && this.route != null && !this.route.isSearching()) {
                 RouteFinderThreadPool.executeRouteFinderThread(new RouteFinderSearchTask(this.route));
                 if (this.route.hasNext()) {
                     this.target = this.route.next();
@@ -114,7 +114,7 @@ public abstract class SwimmingEntity extends BaseEntity {
                 return null;
             }
 
-            if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target!=null) {
+            if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target != null) {
 
                 double x = this.target.x - this.x;
                 double y = this.target.y - this.y;
@@ -134,7 +134,8 @@ public abstract class SwimmingEntity extends BaseEntity {
 
             Vector3 before = this.target;
             this.checkTarget();
-            if (this.target instanceof Vector3 || before != this.target) {
+            if (this.target != null || before != this.target) {
+                assert this.target != null;
                 double x = this.target.x - this.x;
                 double y = this.target.y - this.y;
                 double z = this.target.z - this.z;
@@ -186,7 +187,7 @@ public abstract class SwimmingEntity extends BaseEntity {
                     }
                 }
             }
-            return this.followTarget !=null ? this.followTarget : this.target ;
+            return this.followTarget != null ? this.followTarget : this.target;
         }
         return null;
     }

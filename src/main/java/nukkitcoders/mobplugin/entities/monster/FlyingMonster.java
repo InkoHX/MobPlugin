@@ -13,13 +13,13 @@ import nukkitcoders.mobplugin.utils.Utils;
 
 public abstract class FlyingMonster extends FlyingEntity implements Monster {
 
-    protected float[]   minDamage;
+    private float[] minDamage;
 
-    protected float[]   maxDamage;
+    private float[] maxDamage;
 
-    protected int     attackDelay = 0;
+    protected int attackDelay = 0;
 
-    protected boolean canAttack   = true;
+    private boolean canAttack = true;
 
     public FlyingMonster(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -27,12 +27,12 @@ public abstract class FlyingMonster extends FlyingEntity implements Monster {
 
     @Override
     public void setFollowTarget(Entity target) {
-        this.setTarget(target, true);
+        this.setTarget(target);
     }
 
-    public void setTarget(Entity target, boolean attack) {
+    private void setTarget(Entity target) {
         super.setFollowTarget(target);
-        this.canAttack = attack;
+        this.canAttack = true;
     }
 
     public float getDamage() {
@@ -81,11 +81,11 @@ public abstract class FlyingMonster extends FlyingEntity implements Monster {
             return;
 
         if (minDamage == null || minDamage.length < 4) {
-            minDamage = new float[] { 0, 0, 0, 0 };
+            minDamage = new float[]{0, 0, 0, 0};
         }
 
         if (maxDamage == null || maxDamage.length < 4) {
-            maxDamage = new float[] { 0, 0, 0, 0 };
+            maxDamage = new float[]{0, 0, 0, 0};
         }
 
         for (int i = 0; i < 4; i++) {

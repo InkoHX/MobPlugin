@@ -15,7 +15,7 @@ import nukkitcoders.mobplugin.utils.Utils;
 
 public abstract class WalkingAnimal extends WalkingEntity implements Animal {
 
-    protected int inLoveTicks = 0;
+    private int inLoveTicks = 0;
     protected int spawnBabyDelay = 0;
 
     public WalkingAnimal(FullChunk chunk, CompoundTag nbt) {
@@ -45,7 +45,7 @@ public abstract class WalkingAnimal extends WalkingEntity implements Animal {
 
     @Override
     public boolean entityBaseTick(int tickDiff) {
-        boolean hasUpdate = false;
+        boolean hasUpdate;
         Timings.entityBaseTickTimer.startTiming();
 
         hasUpdate = super.entityBaseTick(tickDiff);
@@ -54,7 +54,7 @@ public abstract class WalkingAnimal extends WalkingEntity implements Animal {
             this.inLoveTicks -= tickDiff;
             if (this.age % 20 == 0) {
                 for (int i = 0; i < 3; i++) {
-                    this.level.addParticle(new HeartParticle(this.add(Utils.rand(-1.0,1.0),this.getMountedYOffset()+ Utils.rand(-1.0,1.0),Utils.rand(-1.0,1.0))));
+                    this.level.addParticle(new HeartParticle(this.add(Utils.rand(-1.0, 1.0), this.getMountedYOffset() + Utils.rand(-1.0, 1.0), Utils.rand(-1.0, 1.0))));
                 }
                 /*EntityEventPacket pk = new EntityEventPacket();
                 pk.eid = this.getId();
@@ -110,12 +110,12 @@ public abstract class WalkingAnimal extends WalkingEntity implements Animal {
         return true;
     }
 
-    public void setInLove() {
+    protected void setInLove() {
         this.inLoveTicks = 600;
         this.setDataFlag(DATA_FLAGS, DATA_FLAG_INLOVE);
     }
 
-    public boolean isInLove() {
+    private boolean isInLove() {
         return inLoveTicks > 0;
     }
 

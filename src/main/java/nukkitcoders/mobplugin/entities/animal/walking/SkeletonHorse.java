@@ -75,7 +75,7 @@ public class SkeletonHorse extends Horse {
                 drops.add(Item.get(Item.BONE, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

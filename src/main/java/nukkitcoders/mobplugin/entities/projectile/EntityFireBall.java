@@ -13,9 +13,9 @@ public class EntityFireBall extends EntityProjectile {
 
     public static final int NETWORK_ID = 85;
 
-    protected boolean critical = false;
+    private boolean critical = false;
 
-    protected boolean canExplode = false;
+    private boolean canExplode = false;
 
     @Override
     public int getNetworkId() {
@@ -51,7 +51,7 @@ public class EntityFireBall extends EntityProjectile {
         this(chunk, nbt, shootingEntity, false);
     }
 
-    public EntityFireBall(FullChunk chunk, CompoundTag nbt, Entity shootingEntity, boolean critical) {
+    private EntityFireBall(FullChunk chunk, CompoundTag nbt, Entity shootingEntity, boolean critical) {
         super(chunk, nbt, shootingEntity);
 
         this.critical = critical;

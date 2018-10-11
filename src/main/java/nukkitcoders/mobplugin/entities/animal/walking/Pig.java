@@ -110,7 +110,7 @@ public class Pig extends WalkingAnimal implements EntityRideable {
                 drops.add(Item.get(this.isOnFire() ? Item.COOKED_PORKCHOP : Item.RAW_PORKCHOP, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     public int getKillExperience() {

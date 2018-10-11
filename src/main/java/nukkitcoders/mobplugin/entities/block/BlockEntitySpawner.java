@@ -31,17 +31,17 @@ public class BlockEntitySpawner extends BlockEntitySpawnable {
     public static final String TAG_Y = "y";
     public static final String TAG_Z = "z";
     public static final String TAG_ENTITY_ID = "EntityId";
-    public static final String TAG_SPAWN_RANGE = "SpawnRange";
-    public static final String TAG_MIN_SPAWN_DELAY = "MinSpawnDelay";
-    public static final String TAG_MAX_SPAWN_DELAY = "MaxSpawnDelay";
-    public static final String TAG_MAX_NEARBY_ENTITIES = "MaxNearbyEntities";
-    public static final String TAG_REQUIRED_PLAYER_RANGE = "RequiredPlayerRange";
+    private static final String TAG_SPAWN_RANGE = "SpawnRange";
+    private static final String TAG_MIN_SPAWN_DELAY = "MinSpawnDelay";
+    private static final String TAG_MAX_SPAWN_DELAY = "MaxSpawnDelay";
+    private static final String TAG_MAX_NEARBY_ENTITIES = "MaxNearbyEntities";
+    private static final String TAG_REQUIRED_PLAYER_RANGE = "RequiredPlayerRange";
 
-    public static final short SPAWN_RANGE = 8;
-    public static final short MIN_SPAWN_DELAY = 200;
-    public static final short MAX_SPAWN_DELAY = 5000;
-    public static final short MAX_NEARBY_ENTITIES = 20;
-    public static final short REQUIRED_PLAYER_RANGE = 16;
+    private static final short SPAWN_RANGE = 8;
+    private static final short MIN_SPAWN_DELAY = 200;
+    private static final short MAX_SPAWN_DELAY = 5000;
+    private static final short MAX_NEARBY_ENTITIES = 20;
+    private static final short REQUIRED_PLAYER_RANGE = 16;
 
     public BlockEntitySpawner(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);

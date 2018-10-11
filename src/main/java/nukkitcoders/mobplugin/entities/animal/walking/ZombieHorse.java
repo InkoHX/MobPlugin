@@ -75,7 +75,7 @@ public class ZombieHorse extends Horse {
                 drops.add(Item.get(Item.ROTTEN_FLESH, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

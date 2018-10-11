@@ -12,9 +12,7 @@ public class EntityBlueWitherSkull extends EntityProjectile {
 
     public static final int NETWORK_ID = 89;
 
-    protected boolean critical = false;
-
-    protected boolean canExplode = false;
+    private boolean canExplode = false;
 
     public EntityBlueWitherSkull(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -59,10 +57,8 @@ public class EntityBlueWitherSkull extends EntityProjectile {
         this(chunk, nbt, shootingEntity, false);
     }
 
-    public EntityBlueWitherSkull(FullChunk chunk, CompoundTag nbt, Entity shootingEntity, boolean critical) {
+    private EntityBlueWitherSkull(FullChunk chunk, CompoundTag nbt, Entity shootingEntity, boolean critical) {
         super(chunk, nbt, shootingEntity);
-
-        this.critical = critical;
     }
 
     public boolean isExplode() {
@@ -99,7 +95,7 @@ public class EntityBlueWitherSkull extends EntityProjectile {
     @Override
     public void onCollideWithEntity(Entity entity) {
         super.onCollideWithEntity(entity);
-        
+
         Effect wither = Effect.getEffect(Effect.WITHER);
         wither.setAmplifier(1);
         wither.setDuration(140);

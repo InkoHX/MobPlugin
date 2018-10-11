@@ -7,6 +7,7 @@ import cn.nukkit.item.Item;
 import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
 import nukkitcoders.mobplugin.entities.animal.SwimmingAnimal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class Dolphin extends SwimmingAnimal {
                 drops.add(Item.get(Item.RAW_FISH, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

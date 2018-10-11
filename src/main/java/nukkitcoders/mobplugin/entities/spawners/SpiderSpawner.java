@@ -17,9 +17,6 @@ import nukkitcoders.mobplugin.entities.monster.walking.Spider;
  */
 public class SpiderSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public SpiderSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }

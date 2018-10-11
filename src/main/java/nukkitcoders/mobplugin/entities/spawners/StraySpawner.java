@@ -30,7 +30,7 @@ public class StraySpawner extends AbstractEntitySpawner {
 
         if (Block.transparent[blockId]) {
             result = SpawnResult.WRONG_BLOCK;
-        }else if (blockLightLevel > 7) {
+        } else if (blockLightLevel > 7) {
             result = SpawnResult.WRONG_LIGHTLEVEL;
         } else if (pos.y > 127 || pos.y < 1 || level.getBlockIdAt((int) pos.x, (int) pos.y, (int) pos.z) == Block.AIR) {
             result = SpawnResult.POSITION_MISMATCH;

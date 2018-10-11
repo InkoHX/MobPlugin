@@ -10,12 +10,13 @@ import cn.nukkit.level.format.FullChunk;
 import cn.nukkit.nbt.tag.CompoundTag;
 import nukkitcoders.mobplugin.entities.monster.WalkingMonster;
 import nukkitcoders.mobplugin.utils.Utils;
+
 import java.util.HashMap;
 
 public class PolarBear extends WalkingMonster {
 
     public static final int NETWORK_ID = 28;
-    int angry = 0;
+    private int angry = 0;
 
     public PolarBear(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -67,7 +68,7 @@ public class PolarBear extends WalkingMonster {
     @Override
     public void initEntity() {
         super.initEntity();
-        this.setDamage(new float[] { 0, 4, 6, 9 });
+        this.setDamage(new float[]{0, 4, 6, 9});
         this.setMaxHealth(30);
         if (this.namedTag.contains("Angry")) {
             this.angry = this.namedTag.getInt("Angry");
@@ -83,7 +84,7 @@ public class PolarBear extends WalkingMonster {
     @Override
     public boolean targetOption(EntityCreature creature, double distance) {
         if (distance <= 100 && this.isAngry() && creature instanceof PolarBear && !((PolarBear) creature).isAngry()) {
-            ((PolarBear) creature).setAngry(1000);
+            ((PolarBear) creature).setAngry();
         }
         return this.isAngry() && super.targetOption(creature, distance);
     }
@@ -135,12 +136,12 @@ public class PolarBear extends WalkingMonster {
         }
     }
 
-    public boolean isAngry() {
+    private boolean isAngry() {
         return this.angry > 0;
     }
 
-    public void setAngry(int val) {
-        this.angry = val;
+    private void setAngry() {
+        this.angry = 1000;
     }
 
     @Override
@@ -148,7 +149,7 @@ public class PolarBear extends WalkingMonster {
         super.attack(ev);
 
         if (!ev.isCancelled()) {
-            this.setAngry(1000);
+            this.setAngry();
         }
         return true;
     }

@@ -33,7 +33,7 @@ public abstract class WalkingEntity extends BaseEntity {
             return;
         }
 
-        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && targetOption((EntityCreature) this.followTarget,this.distanceSquared(this.followTarget)) && this.target!=null) {
+        if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && targetOption((EntityCreature) this.followTarget, this.distanceSquared(this.followTarget)) && this.target != null) {
             return;
         }
 
@@ -60,7 +60,7 @@ public abstract class WalkingEntity extends BaseEntity {
             this.stayTime = 0;
             this.moveTime = 0;
             this.followTarget = creature;
-            if (this.route==null)this.target = creature;
+            if (this.route == null) this.target = creature;
 
         }
 
@@ -115,8 +115,6 @@ public abstract class WalkingEntity extends BaseEntity {
                 this.motionY = this.getGravity();
             } else if (this.motionY <= this.getGravity() * 4) {
                 this.motionY = this.getGravity() * 4;
-            } else if (block instanceof BlockSlab && block instanceof BlockStairs) {
-                this.motionY = this.getGravity() * 4;
             } else if (this.motionY <= (this.getGravity() * 8)) {
                 this.motionY = this.getGravity() * 8;
             } else {
@@ -133,7 +131,7 @@ public abstract class WalkingEntity extends BaseEntity {
                 return null;
             }
 
-            if (this.age % 10 == 0 && this.route!=null && !this.route.isSearching()) {
+            if (this.age % 10 == 0 && this.route != null && !this.route.isSearching()) {
                 RouteFinderThreadPool.executeRouteFinderThread(new RouteFinderSearchTask(this.route));
                 if (this.route.hasNext()) {
                     this.target = this.route.next();
@@ -147,7 +145,7 @@ public abstract class WalkingEntity extends BaseEntity {
                 return null;
             }
 
-            if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target!=null) {
+            if (this.followTarget != null && !this.followTarget.closed && this.followTarget.isAlive() && this.target != null) {
 
                 double x = this.target.x - this.x;
                 double y = this.target.y - this.y;
@@ -161,7 +159,7 @@ public abstract class WalkingEntity extends BaseEntity {
                     if (this.isInsideOfWater()) {
                         this.motionX = this.getSpeed() * 0.05 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.05 * (z / diff);
-                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0,2.0),Utils.rand(-0.5,0),Utils.rand(-2.0,2.0))));
+                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0, 2.0), Utils.rand(-0.5, 0), Utils.rand(-2.0, 2.0))));
                     } else {
                         this.motionX = this.getSpeed() * 0.1 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.1 * (z / diff);
@@ -173,7 +171,8 @@ public abstract class WalkingEntity extends BaseEntity {
 
             Vector3 before = this.target;
             this.checkTarget();
-            if (this.target instanceof Vector3 || before != this.target) {
+            if (this.target != null || before != this.target) {
+                assert this.target != null;
                 double x = this.target.x - this.x;
                 double y = this.target.y - this.y;
                 double z = this.target.z - this.z;
@@ -186,7 +185,7 @@ public abstract class WalkingEntity extends BaseEntity {
                     if (this.isInsideOfWater()) {
                         this.motionX = this.getSpeed() * 0.05 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.05 * (z / diff);
-                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0,2.0),Utils.rand(-0.5,0),Utils.rand(-2.0,2.0))));
+                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0, 2.0), Utils.rand(-0.5, 0), Utils.rand(-2.0, 2.0))));
                     } else {
                         this.motionX = this.getSpeed() * 0.15 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.15 * (z / diff);
@@ -231,7 +230,7 @@ public abstract class WalkingEntity extends BaseEntity {
                     }
                 }
             }
-            return this.followTarget !=null ? this.followTarget : this.target ;
+            return this.followTarget != null ? this.followTarget : this.target;
         }
         return null;
     }

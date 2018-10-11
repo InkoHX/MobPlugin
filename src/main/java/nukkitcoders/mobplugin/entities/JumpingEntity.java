@@ -18,7 +18,7 @@ public abstract class JumpingEntity extends BaseEntity {
         super(chunk, nbt);
     }
 
-    protected void checkTarget() {
+    private void checkTarget() {
         if (this.isKnockback()) {
             return;
         }
@@ -128,7 +128,7 @@ public abstract class JumpingEntity extends BaseEntity {
                     if (this.isInsideOfWater()) {
                         this.motionX = this.getSpeed() * 0.05 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.05 * (z / diff);
-                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0,2.0),Utils.rand(-0.5,0),Utils.rand(-2.0,2.0))));
+                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0, 2.0), Utils.rand(-0.5, 0), Utils.rand(-2.0, 2.0))));
                     } else {
                         this.motionX = this.getSpeed() * 0.1 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.1 * (z / diff);
@@ -154,7 +154,7 @@ public abstract class JumpingEntity extends BaseEntity {
                     if (this.isInsideOfWater()) {
                         this.motionX = this.getSpeed() * 0.05 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.05 * (z / diff);
-                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0,2.0),Utils.rand(-0.5,0),Utils.rand(-2.0,2.0))));
+                        this.level.addParticle(new BubbleParticle(this.add(Utils.rand(-2.0, 2.0), Utils.rand(-0.5, 0), Utils.rand(-2.0, 2.0))));
                     } else {
                         this.motionX = this.getSpeed() * 0.15 * (x / diff);
                         this.motionZ = this.getSpeed() * 0.15 * (z / diff);

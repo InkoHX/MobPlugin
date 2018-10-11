@@ -104,18 +104,18 @@ public class Guardian extends SwimmingMonster {
     @Override
     public boolean entityBaseTick(int tickDiff) {
         boolean hasUpdate = super.entityBaseTick(tickDiff);
-        if (followTarget!=null) {
-            if (laserTargetEid !=followTarget.getId()) {
+        if (followTarget != null) {
+            if (laserTargetEid != followTarget.getId()) {
                 this.setDataProperty(new LongEntityData(Entity.DATA_TARGET_EID, laserTargetEid = followTarget.getId()));
                 laserChargeTick = 40;
             }
-            if (targetOption((EntityCreature) followTarget,this.distanceSquared(followTarget))) {
+            if (targetOption((EntityCreature) followTarget, this.distanceSquared(followTarget))) {
                 if (--laserChargeTick < 0) {
                     attackEntity(followTarget);
                     this.setDataProperty(new LongEntityData(Entity.DATA_TARGET_EID, laserTargetEid = -1));
                     laserChargeTick = 40;
                 }
-            }else{
+            } else {
                 this.setDataProperty(new LongEntityData(Entity.DATA_TARGET_EID, laserTargetEid = -1));
                 laserChargeTick = 40;
             }
@@ -132,7 +132,7 @@ public class Guardian extends SwimmingMonster {
                 drops.add(Item.get(Item.PRISMARINE_SHARD, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

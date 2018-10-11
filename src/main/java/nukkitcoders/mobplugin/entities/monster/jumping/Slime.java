@@ -51,7 +51,7 @@ public class Slime extends JumpingMonster {
         this.setMaxHealth(16);
         super.initEntity();
 
-        this.setDamage(new float[] { 0, 2, 3, 4 });
+        this.setDamage(new float[]{0, 2, 3, 4});
     }
 
     public void attackEntity(Entity player) {
@@ -109,11 +109,11 @@ public class Slime extends JumpingMonster {
                 drops.add(Item.get(Item.SLIMEBALL, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 4;
     }
 }

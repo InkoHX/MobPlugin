@@ -67,7 +67,7 @@ public class Wolf extends TameableMonster {
         }
 
         this.setMaxHealth(8);
-        this.setDamage(new float[] { 0, 3, 4, 6 });
+        this.setDamage(new float[]{0, 3, 4, 6});
     }
 
     @Override
@@ -82,11 +82,11 @@ public class Wolf extends TameableMonster {
         return this.isAngry() && super.targetOption(creature, distance);
     }
 
-    public boolean isAngry() {
+    private boolean isAngry() {
         return this.angry > 0;
     }
 
-    public void setAngry(boolean angry) {
+    private void setAngry(boolean angry) {
         this.angry = angry ? 1 : 0;
     }
 
@@ -111,9 +111,9 @@ public class Wolf extends TameableMonster {
                     Server.broadcastPacket(new Player[]{player}, packet);
                 }
             }
-        }else if (item.equals(Item.get(Item.DYE),false)) {
+        } else if (item.equals(Item.get(Item.DYE), false)) {
             if (this.hasOwner() && player.equals(this.getOwner())) {
-                this.setCollarColor(((ItemDye)item).getDyeColor());
+                this.setCollarColor(((ItemDye) item).getDyeColor());
                 return true;
             }
         }
@@ -187,7 +187,7 @@ public class Wolf extends TameableMonster {
      *
      * @param color the color to be set (when tamed it should be RED)
      */
-    public void setCollarColor(DyeColor color) {
+    private void setCollarColor(DyeColor color) {
         this.namedTag.putInt(NBT_KEY_COLLAR_COLOR, color.getDyeData());
         this.setDataProperty(new IntEntityData(DATA_COLOUR, color.getColor().getRGB()));
         this.collarColor = color;

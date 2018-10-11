@@ -59,11 +59,9 @@ import static nukkitcoders.mobplugin.entities.block.BlockEntitySpawner.*;
  */
 public class MobPlugin extends PluginBase implements Listener {
 
-    private int configVersion = 2; // change this when big changes in config
-
     private Config pluginConfig = null;
 
-    public static MobPlugin instance;
+    private static MobPlugin instance;
 
     public static MobPlugin getInstance() {
         return instance;
@@ -81,6 +79,8 @@ public class MobPlugin extends PluginBase implements Listener {
         // intialize config
         pluginConfig = getConfig();
         // check config version
+        // change this when big changes in config
+        int configVersion = 2;
         if (getConfig().getInt("config-version") != configVersion)
             this.getServer().getLogger().warning("MobPlugin's config file is outdated. Delete old config and reload server to update it.");
         // we need this flag as it's controlled by the plugin's entities
@@ -308,12 +308,6 @@ public class MobPlugin extends PluginBase implements Listener {
         Entity.registerEntity("FireBall", EntityFireBall.class);
     }
 
-    /**
-     * @param type
-     * @param source
-     * @param args
-     * @return
-     */
     public static Entity create(Object type, Position source, Object... args) {
         FullChunk chunk = source.getLevel().getChunk((int) source.x >> 4, (int) source.z >> 4, true);
         if (!chunk.isGenerated()) {
@@ -337,12 +331,8 @@ public class MobPlugin extends PluginBase implements Listener {
      * @return a {@link List} containing a number of {@link IPlayer} elements,
      * which can be {@link Player}
      */
-    public List<IPlayer> getAllRegisteredPlayers() {
-        List<IPlayer> playerList = new ArrayList<>();
-        for (Player player : this.getServer().getOnlinePlayers().values()) {
-            playerList.add(player);
-        }
-        return playerList;
+    List<IPlayer> getAllRegisteredPlayers() {
+        return new ArrayList<>(this.getServer().getOnlinePlayers().values());
     }
 
     /**
@@ -381,7 +371,7 @@ public class MobPlugin extends PluginBase implements Listener {
         if (item.getId() != Item.SPAWN_EGG || block.getId() != Block.MONSTER_SPAWNER) return;
 
         BlockEntity blockEntity = block.getLevel().getBlockEntity(block);
-        if (blockEntity != null && blockEntity instanceof BlockEntitySpawner) {
+        if (blockEntity instanceof BlockEntitySpawner) {
             SpawnerChangeTypeEvent event = new SpawnerChangeTypeEvent((BlockEntitySpawner) blockEntity, ev.getBlock(), ev.getPlayer(), ((BlockEntitySpawner) blockEntity).getSpawnEntityType(), item.getDamage());
             this.getServer().getPluginManager().callEvent(event);
             if (event.isCancelled()) return;

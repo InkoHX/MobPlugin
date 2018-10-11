@@ -288,7 +288,7 @@ public class Blaze extends FlyingMonster {
                 drops.add(Item.get(Item.GLOWSTONE_DUST, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

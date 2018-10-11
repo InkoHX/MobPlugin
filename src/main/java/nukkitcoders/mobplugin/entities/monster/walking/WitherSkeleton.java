@@ -36,7 +36,7 @@ public class WitherSkeleton extends WalkingMonster {
 
         this.fireProof = true;
         this.setMaxHealth(20);
-        this.setDamage(new float[] { 0, 3, 4, 6 });
+        this.setDamage(new float[]{0, 3, 4, 6});
     }
 
     @Override
@@ -51,7 +51,7 @@ public class WitherSkeleton extends WalkingMonster {
 
     @Override
     public void attackEntity(Entity player) {
-      if (this.attackDelay > 10 && player.distanceSquared(this) <= 1) {
+        if (this.attackDelay > 10 && player.distanceSquared(this) <= 1) {
             this.attackDelay = 0;
             player.attack(new EntityDamageByEntityEvent(this, player, EntityDamageEvent.DamageCause.ENTITY_ATTACK, getDamage()));
         }

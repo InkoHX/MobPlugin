@@ -5,7 +5,6 @@ package nukkitcoders.mobplugin.entities.autospawn;
  * Describes spawn results for Spawner task (which is used only internally)
  *
  * @author <a href="mailto:kniffman@googlemail.com">Michael Gertz</a>
- *
  */
 public enum SpawnResult {
 

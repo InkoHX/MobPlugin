@@ -56,7 +56,7 @@ public class Zombie extends WalkingMonster implements EntityAgeable {
     protected void initEntity() {
         super.initEntity();
 
-        this.setDamage(new float[] { 0, 2, 3, 4 });
+        this.setDamage(new float[]{0, 2, 3, 4});
         this.setMaxHealth(20);
     }
 
@@ -71,13 +71,13 @@ public class Zombie extends WalkingMonster implements EntityAgeable {
 
         if (this.isAlive()) {
             if (15 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 2, 3, 4 });
+                this.setDamage(new float[]{0, 2, 3, 4});
             } else if (10 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 4, 6 });
+                this.setDamage(new float[]{0, 3, 4, 6});
             } else if (5 < this.getHealth()) {
-                this.setDamage(new float[] { 0, 3, 5, 7 });
+                this.setDamage(new float[]{0, 3, 5, 7});
             } else {
-                this.setDamage(new float[] { 0, 4, 6, 9 });
+                this.setDamage(new float[]{0, 4, 6, 9});
             }
         }
     }
@@ -129,7 +129,7 @@ public class Zombie extends WalkingMonster implements EntityAgeable {
             EntityEventPacket pk = new EntityEventPacket();
             pk.eid = this.getId();
             pk.event = 4;
-            this.level.addChunkPacket(this.getChunkX() >> 4,this.getChunkZ() >> 4, pk);
+            this.level.addChunkPacket(this.getChunkX() >> 4, this.getChunkZ() >> 4, pk);
         }
     }
 
@@ -155,15 +155,15 @@ public class Zombie extends WalkingMonster implements EntityAgeable {
         List<Item> drops = new ArrayList<>();
         if (this.lastDamageCause instanceof EntityDamageByEntityEvent) {
             int rottenFlesh = Utils.rand(0, 3);
-            for (int i=0; i < rottenFlesh; i++) {
+            for (int i = 0; i < rottenFlesh; i++) {
                 drops.add(Item.get(Item.ROTTEN_FLESH, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 5;
     }
 

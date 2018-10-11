@@ -17,9 +17,6 @@ import nukkitcoders.mobplugin.entities.autospawn.SpawnResult;
  */
 public class BatSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public BatSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }

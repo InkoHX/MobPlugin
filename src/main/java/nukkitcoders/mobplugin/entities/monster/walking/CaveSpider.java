@@ -46,7 +46,7 @@ public class CaveSpider extends Spider {
         super.initEntity();
 
         this.setMaxHealth(12);
-        this.setDamage(new float[] { 0, 2, 3, 3 });
+        this.setDamage(new float[]{0, 2, 3, 3});
     }
 
     @Override
@@ -102,18 +102,18 @@ public class CaveSpider extends Spider {
         if (this.lastDamageCause instanceof EntityDamageByEntityEvent) {
             int strings = Utils.rand(0, 3);
             int spiderEye = Utils.rand(0, 3) == 0 ? 1 : 0;
-            for (int i=0; i < strings; i++) {
+            for (int i = 0; i < strings; i++) {
                 drops.add(Item.get(Item.STRING, 0, 1));
             }
-            for (int i=0; i < spiderEye; i++) {
+            for (int i = 0; i < spiderEye; i++) {
                 drops.add(Item.get(Item.SPIDER_EYE, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 5;
     }
 

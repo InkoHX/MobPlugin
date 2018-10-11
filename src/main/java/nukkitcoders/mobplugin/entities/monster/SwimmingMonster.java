@@ -13,13 +13,13 @@ import nukkitcoders.mobplugin.utils.Utils;
 
 public abstract class SwimmingMonster extends SwimmingEntity implements Monster {
 
-    protected float[]   minDamage;
+    private float[] minDamage;
 
-    protected float[]   maxDamage;
+    private float[] maxDamage;
 
-    protected int   attackDelay = 0;
+    protected int attackDelay = 0;
 
-    protected boolean canAttack   = true;
+    private boolean canAttack = true;
 
     public SwimmingMonster(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
@@ -30,7 +30,7 @@ public abstract class SwimmingMonster extends SwimmingEntity implements Monster 
         this.setFollowTarget(target, true);
     }
 
-    public void setFollowTarget(Entity target, boolean attack) {
+    private void setFollowTarget(Entity target, boolean attack) {
         super.setFollowTarget(target);
         this.canAttack = attack;
     }
@@ -82,11 +82,11 @@ public abstract class SwimmingMonster extends SwimmingEntity implements Monster 
         }
 
         if (minDamage == null || minDamage.length < 4) {
-            minDamage = new float[] { 0, 0, 0, 0 };
+            minDamage = new float[]{0, 0, 0, 0};
         }
 
         if (maxDamage == null || maxDamage.length < 4) {
-            maxDamage = new float[] { 0, 0, 0, 0 };
+            maxDamage = new float[]{0, 0, 0, 0};
         }
 
         for (int i = 0; i < 4; i++) {

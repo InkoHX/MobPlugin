@@ -74,7 +74,6 @@ public class Stray extends WalkingMonster {
 
     @Override
     public void attackEntity(Entity player) {
-	    return;
     }
 
     @Override
@@ -90,7 +89,7 @@ public class Stray extends WalkingMonster {
                 drops.add(Item.get(Item.ARROW, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override

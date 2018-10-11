@@ -59,18 +59,19 @@ public abstract class TameableMonster extends WalkingMonster implements Tameable
         return owner;
     }
 
-    public boolean hasOwner() {
-        return owner!=null;
+    protected boolean hasOwner() {
+        return owner != null;
     }
 
     /**
      * Sets the owner of the tameable {@link Entity}
+     *
      * @param player the player that is the owner
      */
     public void setOwner(Player player) {
         this.owner = player;
         setDataProperty(new LongEntityData(DATA_OWNER_EID, player.getId()));
-        setTamed(true);
+        setTamed();
     }
 
     @Override
@@ -88,8 +89,8 @@ public abstract class TameableMonster extends WalkingMonster implements Tameable
     }
 
 
-    private void setTamed (boolean tamed) {
-        this.setDataFlag(DATA_FLAGS, DATA_FLAG_TAMED, tamed);
+    private void setTamed() {
+        this.setDataFlag(DATA_FLAGS, DATA_FLAG_TAMED, true);
     }
 
     private void setSittingDataProperty(boolean sit) {

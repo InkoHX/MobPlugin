@@ -46,7 +46,7 @@ public class Silverfish extends WalkingMonster {
         super.initEntity();
 
         this.setMaxHealth(8);
-        this.setDamage(new float[] { 0, 1, 1, 1 });
+        this.setDamage(new float[]{0, 1, 1, 1});
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Silverfish extends WalkingMonster {
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 5;
     }
 }

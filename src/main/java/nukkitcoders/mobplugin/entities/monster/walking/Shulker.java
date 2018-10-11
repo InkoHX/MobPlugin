@@ -12,7 +12,7 @@ public class Shulker extends WalkingMonster {
 
     public Shulker(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-     }
+    }
 
     @Override
     public int getNetworkId() {

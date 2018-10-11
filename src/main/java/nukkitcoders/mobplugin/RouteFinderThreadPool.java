@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * @author zzz1999 @ MobPlugin
  */
 public class RouteFinderThreadPool {
-    public static ThreadPoolExecutor executor =
+    private static ThreadPoolExecutor executor =
             new ThreadPoolExecutor(
                     1,
                     Runtime.getRuntime().availableProcessors() + 1,
@@ -21,7 +21,7 @@ public class RouteFinderThreadPool {
         if (!executor.isShutdown() && !executor.isTerminating()) executor.execute(t);
     }
 
-    public static void shutDownNow() {
+    static void shutDownNow() {
         executor.shutdownNow();
     }
 }

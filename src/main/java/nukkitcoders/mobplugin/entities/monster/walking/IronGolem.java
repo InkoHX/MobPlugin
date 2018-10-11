@@ -21,7 +21,7 @@ public class IronGolem extends WalkingMonster {
 
     public IronGolem(FullChunk chunk, CompoundTag nbt) {
         super(chunk, nbt);
-        this.setFriendly(true);
+        this.setFriendly();
     }
 
     @Override
@@ -49,8 +49,8 @@ public class IronGolem extends WalkingMonster {
         this.setMaxHealth(100);
         super.initEntity();
 
-        this.setDamage(new float[] { 0, 21, 21, 21 });
-        this.setMinDamage(new float[] { 0, 7, 7, 7 });
+        this.setDamage(new float[]{0, 21, 21, 21});
+        this.setMinDamage(new float[]{0, 7, 7, 7});
     }
 
     public void attackEntity(Entity player) {
@@ -108,18 +108,18 @@ public class IronGolem extends WalkingMonster {
         if (this.lastDamageCause instanceof EntityDamageByEntityEvent) {
             int ironIngots = Utils.rand(3, 6);
             int poppies = Utils.rand(0, 3);
-            for (int i=0; i < ironIngots; i++) {
+            for (int i = 0; i < ironIngots; i++) {
                 drops.add(Item.get(Item.IRON_INGOT, 0, 1));
             }
-            for (int i=0; i < poppies; i++) {
+            for (int i = 0; i < poppies; i++) {
                 drops.add(Item.get(Item.POPPY, 0, 1));
             }
         }
-        return drops.toArray(new Item[drops.size()]);
+        return drops.toArray(new Item[0]);
     }
 
     @Override
-    public int getKillExperience () {
+    public int getKillExperience() {
         return 0;
     }
 

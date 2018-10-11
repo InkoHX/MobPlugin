@@ -17,9 +17,6 @@ import nukkitcoders.mobplugin.entities.autospawn.SpawnResult;
  */
 public class RabbitSpawner extends AbstractEntitySpawner {
 
-    /**
-     * @param spawnTask
-     */
     public RabbitSpawner(AutoSpawnTask spawnTask, Config pluginConfig) {
         super(spawnTask, pluginConfig);
     }
@@ -36,8 +33,8 @@ public class RabbitSpawner extends AbstractEntitySpawner {
             result = SpawnResult.WRONG_BLOCK;
         } else if (pos.y > 127 || pos.y < 1 || level.getBlockIdAt((int) pos.x, (int) pos.y, (int) pos.z) == Block.AIR) {
             result = SpawnResult.POSITION_MISMATCH;
-        //} else if (blockLightLevel < 9) {
-        //  result = SpawnResult.WRONG_LIGHTLEVEL;
+            //} else if (blockLightLevel < 9) {
+            //  result = SpawnResult.WRONG_LIGHTLEVEL;
         } else {
             this.spawnTask.createEntity(getEntityName(), pos.add(0, 1.75, 0));
         }

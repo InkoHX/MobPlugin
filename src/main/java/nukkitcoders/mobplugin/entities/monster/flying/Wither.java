@@ -71,7 +71,7 @@ public class Wither extends FlyingMonster {
 
     @Override
     public void attackEntity(Entity player) {
-    if (this.attackDelay > 20 && Utils.rand(1, 5) < 3 && this.distance(player) <= 100) {
+        if (this.attackDelay > 20 && Utils.rand(1, 5) < 3 && this.distance(player) <= 100) {
             this.attackDelay = 0;
 
             double f = 1;
@@ -113,7 +113,7 @@ public class Wither extends FlyingMonster {
         return hasUpdate;
     }
 
-    public void explode() {
+    private void explode() {
         ExplosionPrimeEvent ev = new ExplosionPrimeEvent(this, 5);
         this.server.getPluginManager().callEvent(ev);
 
